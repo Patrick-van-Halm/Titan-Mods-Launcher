@@ -1,0 +1,13 @@
+c:\users\patrick\documents\visual studio 2015\Projects\Titan R3A Tool\Titan R3A Tool\bin\Debug\Titan R3A Tool.exe.config
+c:\users\patrick\documents\visual studio 2015\Projects\Titan R3A Tool\Titan R3A Tool\bin\Debug\Titan R3A Tool.exe
+c:\users\patrick\documents\visual studio 2015\Projects\Titan R3A Tool\Titan R3A Tool\bin\Debug\Titan R3A Tool.pdb
+c:\users\patrick\documents\visual studio 2015\Projects\Titan R3A Tool\Titan R3A Tool\obj\Debug\Titan R3A Tool.csprojResolveAssemblyReference.cache
+c:\users\patrick\documents\visual studio 2015\Projects\Titan R3A Tool\Titan R3A Tool\obj\Debug\Titan_R3A_Tool.Form1.resources
+c:\users\patrick\documents\visual studio 2015\Projects\Titan R3A Tool\Titan R3A Tool\obj\Debug\Titan_R3A_Tool.Properties.Resources.resources
+c:\users\patrick\documents\visual studio 2015\Projects\Titan R3A Tool\Titan R3A Tool\obj\Debug\Titan R3A Tool.csproj.GenerateResource.Cache
+c:\users\patrick\documents\visual studio 2015\Projects\Titan R3A Tool\Titan R3A Tool\obj\Debug\Titan R3A Tool.exe
+c:\users\patrick\documents\visual studio 2015\Projects\Titan R3A Tool\Titan R3A Tool\obj\Debug\Titan R3A Tool.pdb
+C:\Users\Patrick\Documents\Visual Studio 2015\Projects\Titan R3A Tool\Titan R3A Tool\obj\Debug\Titan_R3A_Tool.InfoForm.resources
+C:\Users\James\Desktop\Titan R3A Tool\Titan R3A Tool\bin\Debug\Titan R3A Tool.exe.config
+C:\Users\James\Desktop\Titan R3A Tool\Titan R3A Tool\obj\Debug\Titan R3A Tool.exe
+C:\Users\James\Desktop\Titan R3A Tool\Titan R3A Tool\obj\Debug\Titan R3A Tool.pdb
