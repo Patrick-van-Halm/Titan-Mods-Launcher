@@ -270,7 +270,7 @@ _detector = format['%1 nearestObject "Rabbit_F"',getpos _rabbit];
     _masshint = {
       params["_parts","_getVariable","_setVariable"];
 			_text = _parts select 0;
-			_fivedorraboughtfromtitanmods_co_de = format["hint ' %1 '", _parts];
+			_fivedorraboughtfromtitanmods_co_de = format["hint '%1';", _text];
 			{
 				_fivedorraboughtfromtitanmods_co_de = _fivedorraboughtfromtitanmods_co_de + " " + _x;
 			} forEach _parts;
@@ -1252,7 +1252,7 @@ hintSilent "loading.....weps done";
 								 _dir = getDir vehicle player;
 								 _pos1 = getPos vehicle player;
 								 _pos = [(_pos1 select 0) + 5*(sin _dir), (_pos1 select 1) + 5*(cos _dir), (_pos1 select 2)];
-                 _vehicle_chosen createVehicle _pos;
+								 _vehicle_chosen createVehicle _pos;
 								};
 		};
 
