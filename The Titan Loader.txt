@@ -9,3 +9,25 @@ Red Alert 3 - Bronze
 Arma 3 - Silver
 B03 - Gold
 WAW - Platinum
+
+
+
+
+
+Arma 3 Plans:
+
+User opens A3 Option on the loader
+
+3 buttons
+
+
+button 1 = wasteland menu
+button 2 =  exile
+button 3 = KoTH
+
+
+
+each button will copy the code for the menu onto the users clipboard, then they can do what they wish with it.
+clicking the button will (hopefully) access an FTP or my website files, retreive the latest version of the menu an then copy it to the users clipboard
+
+this is my plan for the "live update system" that doesnt require any redownloading of the loader.
