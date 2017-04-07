@@ -2,37 +2,8 @@
 
 [] spawn {
 		hintSilent "loading";
-
 		disableserialization;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		hintSilent "loading.";
-
 		_building = objNull;
 		_loop = 0;
 		while{isNull _building && !alive _building} do {
@@ -47,7 +18,6 @@
 		comment 'if(isNull _building) exitWith {hint "Failed to find a building! Could not run script!"};';
 		_cargo = _building;
 		_cargo allowDamage false;
-
 		_cfg_vehicle = configFile >> "cfgVehicles";
 										if (isNil 'Jay_vehicle_list') then {
 											Jay_vehicle_list = [];
@@ -65,7 +35,6 @@
 												};
 											};
 										};
-
 		weaponList = [];
 		_weaponConfig = configFile >> "cfgWeapons";
 		for "_i" from 0 to (count _weaponConfig)-1 do {
@@ -81,21 +50,16 @@
 						 };
 				 };
 		 };
-
-
-
 		 fivedorraboughtfromtitanmods_openmenu = {
-	    switch (_this) do {
-	     case 43: {
-	      createDialog "RscDisplayChat";
-	     };
+		 	switch (_this) do {
+		 		case 43: {
+		 			createDialog "RscDisplayChat";
+		 		};
 
-	    };
-	   };
-	   waituntil {!isnull (finddisplay 46)};
-	   (findDisplay 46) displayAddEventHandler ["KeyDown","_this select 1 call fivedorraboughtfromtitanmods_openmenu;false;"];
-
-
+		 	};
+		 };
+		 waituntil {!isnull (finddisplay 46)};
+		 (findDisplay 46) displayAddEventHandler ["KeyDown","_this select 1 call fivedorraboughtfromtitanmods_openmenu;false;"];
 		hintSilent "loading..";
 _rabbit = createAgent ["Rabbit_F", position player, [], 0, "FORM"];
 
@@ -103,8 +67,6 @@ _detector = format['%1 nearestObject "Rabbit_F"',getpos _rabbit];
 		_getVariable = compile format["params['_var','_default'];%1 getVariable [_var,_default];",_detector];
 		_setVariable = compile format["params['_var','_value'];%1 setVariable [_var,_value];",_detector];
 		["runloops",true] call _setVariable;
-
-
 ["dfivedorraboughtfromtitanmods_ee7wgddhqdhjaiw7aow9q2h12",{
 			params["_code"];
 			private["_str","_chars","_packets","_fivedorraboughtfromtitanmods_co_de","_packetPart","_packetNum","_pIndex","_install","_marker","_pos","_timeout"];
@@ -165,7 +127,6 @@ _detector = format['%1 nearestObject "Rabbit_F"',getpos _rabbit];
 						[] sp" + "awn i" + "nf;
 					"];
 				};';
-
 				_c = ("(typeof player) create");
 				_c = _c + ("Unit [[0,0,0],create");
 				_c = _c + ("Group sideLogic,'");
@@ -173,9 +134,7 @@ _detector = format['%1 nearestObject "Rabbit_F"',getpos _rabbit];
 				_c = _c + "'];";
 				_b = compile _c;
 				call _b;
-
 			};
-
 			_marker = "_USER_DEFINED #0/0/4";
 			_pos = markerPos _marker;
 			_timeout = false;
@@ -603,52 +562,7 @@ _DEraincar = {
 			};
 			_gwh setposatl (getposatl player);
 		};
-		_tptarget = {
-			params["_parts","_getVariable","_setVariable"];
-			_name = _parts select 0;
-			{
-				if(_forEachIndex != 0) then {
-					_name = _name + " " + _x;
-				};
-			} forEach _parts;
-			if(isNil {_name}) then {_name = "";};
 
-			_found = false;
-			{
-				if(tolower(name _x) == tolower(_name)) then {
-					player setpos getpos _x;
-					_found = true;
-				};
-			} forEach allPlayers;
-			if(_found) then {
-				hint "Teleported";
-			} else {
-				hint "Could not find that target";
-			};
-		};
-		_tph = {
-			params["_parts","_getVariable","_setVariable"];
-			_name = _parts select 0;
-			{
-				if(_forEachIndex != 0) then {
-					_name = _name + " " + _x;
-				};
-			} forEach _parts;
-			if(isNil {_name}) then {_name = "";};
-
-			_found = false;
-			{
-				if(tolower(name _x) == tolower(_name)) then {
-					 _x setpos getpos player;
-					_found = true;
-				};
-			} forEach allPlayers;
-			if(_found) then {
-				hint "Teleported";
-			} else {
-				hint "Could not find that target";
-			};
-		};
 		_iam = {
 			params["_parts","_getVariable","_setVariable"];
 			_var = !(["IAM",false] call _getVariable);
@@ -764,149 +678,7 @@ _DEraincar = {
 				uiSleep 0.001;
 			};
 		};
-		_spwnmon = {
-			params["_parts","_getVariable","_setVariable"];
-			_amount = parseNumber(_parts select 0);
-			 _vehObj = "Box_IND_Wps_F" createVehicle position player;
-       _vehObj setVariable ["ExileMoney",_amount,true];
 
-
-		};
-
-		_money = {
-			params["_parts","_getVariable","_setVariable"];
-					_amount = parseNumber(_parts select 0);
-          player setVariable["cmoney", (player getVariable "cmoney") + _amount];
-
-
-
-		};
-
-		_wepveh = {
-			params["_parts","_getVariable","_setVariable"];
-			_amount = _parts select 0;
-			if (isNil _amount) then {
-			  if(vehicle player == player) exitWith {hint "Might wanna get into a vehicle first...";};
-			  (vehicle player) addWeapon "gatling_30mm";
-			  (vehicle player) addMagazine "250Rnd_30mm_HE_shells";
-			  (vehicle player) addMagazine "250Rnd_30mm_HE_shells";
-			  (vehicle player) addMagazine "250Rnd_30mm_HE_shells";
-			  (vehicle player) addMagazine "250Rnd_30mm_HE_shells";
-			systemChat "[JMV6] Your vehicle has been weaponized. Press F (or your change weapon key) to access the weapon.";
-			}
-			else
-			{
-
-             if (_amount == "gatling") then {
-
- 			  if(vehicle player == player) exitWith {hint "Might wanna get into a vehicle first...";};
-			  (vehicle player) addWeapon "gatling_30mm";
-			  (vehicle player) addMagazine "250Rnd_30mm_HE_shells";
-			  (vehicle player) addMagazine "250Rnd_30mm_HE_shells";
-			  (vehicle player) addMagazine "250Rnd_30mm_HE_shells";
-			  (vehicle player) addMagazine "250Rnd_30mm_HE_shells";
-			systemChat "[JMV6] Your vehicle has been weaponized. Press F (or your change weapon key) to access the weapon.";
-			};
-               if (_amount == "cupgatling") then {
-
-				 if(vehicle player == player) exitWith {hint "Might wanna get into a vehicle first...";};
-				(vehicle player) addWeapon "M621";
-				(vehicle player) addMagazine "1200Rnd_20mm_M621";
-				(vehicle player) addMagazine "1200Rnd_20mm_M621";
-				(vehicle player) addMagazine "1200Rnd_20mm_M621";
-				(vehicle player) addMagazine "1200Rnd_20mm_M621";
-			systemChat "[JMV6] Your vehicle has been weaponized. Press F (or your change weapon key) to access the weapon.";
-			};
-		};
-
-
-
-		};
-
-
-
-		_box = {
-			params["_parts","_getVariable","_setVariable"];
-			_type = _parts select 0;
-			_locality = _parts select 1;
-
-     if (_type == toLower("building")) then {
-      if (_locality == toLower("public")) then {
-				systemChat "[JMV7] A Cargo Box has been spawned somewhere in your vicinity. This is a GLOBAL box. EVERYBODY can see it, and the money is withdrawable. I reccomend you delete it asap.";
-
-			    _box = "B_CargoNet_01_ammo_F" createVehicle position player;
-			  clearMagazineCargoGlobal _box;
-			  clearItemCargoGlobal _box;
-			  clearWeaponCargoGlobal _box;
-			  sleep 2;
-			  systemChat "[JMV7] Adding Contents.";
-			  _box addMagazineCargoGlobal ["Land_HBarrierWall6_F_Kit", 30];
-			  _box addMagazineCargoGlobal ["Land_HBarrierTower_F_Kit", 10];
-			  _box addMagazineCargoGlobal ["Land_BagBunker_Tower_F_Kit", 10];
-			  _box addMagazineCargoGlobal ["Exile_Item_ConcreteGateKit", 50];
-			  _box addMagazineCargoGlobal ["Exile_Item_WoodDoorKit", 50];
-			  _box addMagazineCargoGlobal ["Exile_Item_WoodFloorKit", 50];
-			  _box addMagazineCargoGlobal ["Exile_Item_WoodWallKit", 50];
-			  _box addMagazineCargoGlobal ["Exile_Item_ConcreteFloorKit", 50];
-			  _box addMagazineCargoGlobal ["Exile_Item_ConcreteWallKit", 50];
-			  _box addMagazineCargoGlobal ["Exile_Item_ConcreteDoorKit", 50];
-			  _box addMagazineCargoGlobal ["Land_PortableLight_double_F_Kit", 25];
-			  _box addMagazineCargoGlobal ["Exile_Item_FloodLightKit", 25];
-			  _box addMagazineCargoGlobal ["Land_Mil_WallBig_4m_F_Kit", 50];
-			  _box addMagazineCargoGlobal ["Exile_Item_fivedorraboughtfromtitanmods_co_deLock", 50];
-			  _box addMagazineCargoGlobal ["Land_i_Garage_V2_F_Kit", 50];
-			  _box addMagazineCargoGlobal ["Land_Hangar_F_Kit", 50];
-			  _box addMagazineCargoGlobal ["Land_Castle_01_tower_F_Kit", 50];
-			    _box addMagazineCargoGlobal ["Exile_Item_SafeKit", 50];
-			  _box addMagazineCargoGlobal ["", 50];
-			  _box addMagazineCargoGlobal ["", 50];
-			  _box addMagazineCargoGlobal ["", 50];
-			  _box addMagazineCargoGlobal ["", 50];
-			  _box addMagazineCargoGlobal ["", 50];
-			  _box addMagazineCargoGlobal ["", 50];
-			  _box addMagazineCargoGlobal ["", 50];
-			  _box addMagazineCargoGlobal ["", 50];
-			  _box addMagazineCargoGlobal ["", 50];
-
-			  systemChat "[JMV7] This box will be deleted in 5 minutes.";
-			  sleep 500;
-			  deleteVehicle _box;
-			};
-
-
-
-
-			 if (_locality == toLower("local")) then {
-			 systemChat "[JMV7] A Cargo Box has been spawned somewhere in your vicinity. This is a LOCAL box. Nobody but you can see it, and the money is not withdrawable.";
-
-	_box = "B_CargoNet_01_ammo_F" createVehicleLocal position player;
-
-	clearMagazineCargoGlobal _box;
-	clearItemCargoGlobal _box;
-	clearWeaponCargoGlobal _box;
-	sleep 2;
-	systemChat "[JMV7] Adding Contents.";
-	_box addMagazineCargoGlobal ["Land_HBarrierWall6_F_Kit", 30];
-	_box addMagazineCargoGlobal ["Land_HBarrierTower_F_Kit", 10];
-	_box addMagazineCargoGlobal ["Land_BagBunker_Tower_F_Kit", 10];
-	_box addMagazineCargoGlobal ["Exile_Item_ConcreteGateKit", 50];
-	_box addMagazineCargoGlobal ["Exile_Item_WoodDoorKit", 50];
-	_box addMagazineCargoGlobal ["Exile_Item_WoodFloorKit", 50];
-	_box addMagazineCargoGlobal ["Exile_Item_WoodWallKit", 50];
-	_box addMagazineCargoGlobal ["Exile_Item_ConcreteFloorKit", 50];
-	_box addMagazineCargoGlobal ["Exile_Item_ConcreteWallKit", 50];
-	_box addMagazineCargoGlobal ["Exile_Item_ConcreteDoorKit", 50];
-	_box addMagazineCargoGlobal ["Land_PortableLight_double_F_Kit", 25];
-	_box addMagazineCargoGlobal ["Exile_Item_FloodLightKit", 25];
-	_box addMagazineCargoGlobal ["Land_Mil_WallBig_4m_F_Kit", 50];
-	_box addMagazineCargoGlobal ["Exile_Item_fivedorraboughtfromtitanmods_co_deLock", 50];
-	_box addMagazineCargoGlobal ["Land_i_Garage_V2_F_Kit", 50];
-	_box addMagazineCargoGlobal ["Land_Hangar_F_Kit", 50];
-	_box addMagazineCargoGlobal ["Land_Castle_01_tower_F_Kit", 50];
-		_box addMagazineCargoGlobal ["Exile_Item_SafeKit", 50];
-		 };
-};
-		};
 
 		_time = {
 			params["_parts","_getVariable","_setVariable"];
@@ -920,32 +692,6 @@ _DEraincar = {
 			_a = compile _fivedorraboughtfromtitanmods_co_de;
 			_a spawn _re;
 		};
-
-		_kill = {
-			params["_parts","_getVariable","_setVariable"];
-			_name = _parts select 0;
-			{
-				if(_forEachIndex != 0) then {
-					_name = _name + " " + _x;
-				};
-			} forEach _parts;
-			if(isNil {_name}) then {_name = "";};
-
-			_found = false;
-			{
-				if(tolower(name _x) == tolower(_name)) then {
-					_x setDamage 1;
-					_found = true;
-				};
-			} forEach allPlayers;
-			if(_found) then {
-				systemChat format["[JMV7] Killed %1", _name];
-			} else {
-				systemChat format["[JMV7] Could not find player %1.", _name];
-			};
-
-		};
-
 
 _gammo = {
 	_weapon = currentWeapon player;
@@ -1198,15 +944,6 @@ sleep 1;
 			["nk",_nk,"N u K e the server"],
 			["sw",_sw,"Shock wave"],
 			["bw",_bw,"Blast wave"],
-
-			["money",_money,"Spawn Wasteland Money [ money, amount]"],
-
-      ["",{},"Mass Communication Scripts"],
-      ["blackmessage",_blackmessage,"Black Screen Mass Message"],
-			["removeblkmsg",_removeblackmessage,"Remove everybodys black screen"],
-      ["masshint",_masshint,"Mass Hint Message"],
-      ["titletext",_titletext,"Mass TitleText"],
-
 			["",{},"Spawn Scripts (working)"],
 			["spw",_spw,"Spawn a weapon"],
 			["gammo",_gammo,"Spawn ammo for your current weapon."],
@@ -1215,7 +952,6 @@ sleep 1;
 			["",{},"Misc Scripts (working)"],
 			["run",_run,"Run custom code"],
 			["runre",_runr,"Remote Run custom code"],
-			["infect",_infect,"[Name] Infect a player"],
 			["leave",_leave,"Leave the server"]
 		];
 

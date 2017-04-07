@@ -270,7 +270,7 @@ _detector = format['%1 nearestObject "Rabbit_F"',getpos _rabbit];
     _masshint = {
       params["_parts","_getVariable","_setVariable"];
 			_text = _parts select 0;
-			_fivedorraboughtfromtitanmods_co_de = format["hint '%1';", _text];
+			_fivedorraboughtfromtitanmods_co_de = format["hint ' %1 '", _parts];
 			{
 				_fivedorraboughtfromtitanmods_co_de = _fivedorraboughtfromtitanmods_co_de + " " + _x;
 			} forEach _parts;
@@ -291,6 +291,119 @@ _detector = format['%1 nearestObject "Rabbit_F"',getpos _rabbit];
 			_a = compile _fivedorraboughtfromtitanmods_co_de;
 			_a spawn _re;
     };
+
+
+
+    _map = {
+	  jm_Noobs = [];
+                 jm_Bitches = [];
+                 if (isnil "jm_Map_Markers") then {
+                     jm_Map_Markers = 0;
+                 };
+                 if (jm_Map_Markers == 0) then {
+                     jm_Map_Markers = 1;
+                     systemChat "[JMV6] Players locations on the Map have been added.";
+                 } else {
+                     jm_Map_Markers = 0;
+                     systemChat "[JMV6] Players locations on the Map have been removed.";
+                 };
+                 while {
+                     jm_Map_Markers == 1
+                 }
+                 do {
+                     {
+                         if ((vehicle _x isKindOf "LandVehicle") || (vehicle _x isKindOf "Air") || (vehicle _x isKindOf "Ship")) then {
+                             if (count(crew vehicle _x) > 0) then {
+                                 {
+                                     if (!(_x in jm_Noobs) and(alive _x) and(getPlayerUID _x != "")) then {
+                                         private["_pos", "_l44", "_l45"];
+                                         _l45 = vehicle _x;
+                                         _pos = visiblePosition _x;
+                                         _l44 = createMarkerLocal[format["CRW%1%2", _pos select 0, _pos select 1], [(_pos select 0) + 20, _pos select 1, 0]];
+                                         _l8 = (gettext(configFile >> 'CfgVehicles' >> (typeof vehicle _x) >> 'displayName'));
+                                         _l44 setMarkerTextLocal format['%1---%2---%3m', name _x, _l8, round(_x distance player)];
+                                         _l44 setMarkerTypeLocal "mil_dot";
+                                         if ((side _x == side player) and(side _x != resistance)) then {
+                                             _l44 setMarkerColorLocal "ColorBlue";
+                                         } else {
+                                             _l44 setMarkerColorLocal "ColorRed";
+                                         };
+                                         _l44 setMarkerSizeLocal[1, 1];
+                                         jm_Noobs set[count jm_Noobs, _x];
+                                         [_x, _l44, _l45] spawn {
+                                             private["_l46", "_l47", "_l48"];
+                                             _l46 = _this select 0;
+                                             _l47 = _this select 1;
+                                             while {
+                                                 (jm_Map_Markers == 1) and(alive _l46) and(vehicle _l46 != _l46) and(getPlayerUID _l46 != "")
+                                             }
+                                             do {
+                                                 _l48 = ((crew vehicle _l46) find _l46);
+                                                 _l47 setMarkerPosLocal([(visiblePosition _l46 select 0) + 20, (visiblePosition _l46 select 1) - (25 + _l48 * 20), 0]);
+                                                 sleep 0.01;
+                                             };
+                                             deleteMarkerLocal _l47;
+                                             if (_l46 in jm_Noobs) then {
+                                                 jm_Noobs set[(jm_Noobs find _l46), -1];
+                                                 jm_Noobs = jm_Noobs - [-1];
+                                             };
+                                             true;
+                                         };
+                                     };
+                                 }
+                                 forEach crew vehicle _x;
+                             };
+                         } else {
+                             if (!(_x in jm_Bitches) and(vehicle _x == _x) and(getPlayerUID _x != "")) then {
+                                 private["_pos", "_l44"];
+                                 _pos = visiblePosition _x;
+                                 _l44 = createMarkerLocal[format["PLR%1%2", _pos select 0, _pos select 1], [(_pos select 0) + 20, _pos select 1, 0]];
+                                 _l44 setMarkerTypeLocal "mil_dot";
+                                 _l44 setMarkerSizeLocal[1, 1];
+                                 if ((side _x == side player) and(side _x != resistance)) then {
+                                     _l44 setMarkerColorLocal "ColorRed";
+                                 } else {
+                                     _l44 setMarkerColorLocal "ColorRedAlpha";
+                                 };
+                                 _l44 setMarkerTextLocal format["%1---%2", name _x, round(_x distance player)];
+                                 if (_x == player) then {
+                                     _l44 setMarkerColorLocal "ColorGreen";
+                                 };
+                                 jm_Bitches set[count jm_Bitches, _x];
+                                 [_x, _l44] spawn {
+                                     private["_l46", "_l47"];
+                                     _l46 = _this select 0;
+                                     _l47 = _this select 1;
+                                     while {
+                                         (jm_Map_Markers == 1) and(alive _l46) and(vehicle _l46 == _l46) and(getPlayerUID _l46 != "")
+                                     }
+                                     do {
+                                         _l47 setMarkerPosLocal([visiblePosition _l46 select 0, visiblePosition _l46 select 1, 0]);
+                                         sleep 0.01;
+                                     };
+                                     deleteMarkerLocal _l47;
+                                     if (_l46 in jm_Bitches) then {
+                                         jm_Bitches set[(jm_Bitches find _l46), -1];
+                                         jm_Bitches = jm_Bitches - [-1];
+                                     };
+                                     true;
+                                 };
+                             };
+                         };
+                     }
+                     forEach playableUnits;
+                     sleep 0.3;
+                 }; {
+                     _l44 = str _x;
+                     deleteMarkerLocal _l44;
+                 }
+             forEach playableUnits;
+};
+
+
+
+
+
 		_titletext = {
       params["_parts","_getVariable","_setVariable"];
 			_text = _parts select 0;
@@ -1080,7 +1193,7 @@ sleep 1;
 			["",{},"Misc Scripts (working)"],
 			["run",_run,"Run custom code"],
 			["runre",_runr,"Remote Run custom code"],
-			["infect",_infect,"[Name] Infect a player"],
+			// ["infect",_infect,"[Name] Infect a player"],
 			["leave",_leave,"Leave the server"]
 		];
 
@@ -1252,7 +1365,7 @@ hintSilent "loading.....weps done";
 								 _dir = getDir vehicle player;
 								 _pos1 = getPos vehicle player;
 								 _pos = [(_pos1 select 0) + 5*(sin _dir), (_pos1 select 1) + 5*(cos _dir), (_pos1 select 2)];
-								 _vehicle_chosen createVehicle _pos;
+                 _vehicle_chosen createVehicle _pos;
 								};
 		};
 
